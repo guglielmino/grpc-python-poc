@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package notificator;
+
+service NotificatorService {
+    rpc SendNotification(NotificationPayload) returns (Result) {}
+}
+
+message NotificationPayload {
+    string destination  = 1;
+    string message = 2;
+
+}

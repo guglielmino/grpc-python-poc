@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  server:
+    build:
+      context: ./
+      dockerfile: ./server-3.x/Dockerfile
+
+  client:
+    build:
+      context: ./
+      dockerfile: ./client-2.x/Dockerfile
+    environment:
+      - GRPC_HOST=server
+      - GRPC_PORT=50051
