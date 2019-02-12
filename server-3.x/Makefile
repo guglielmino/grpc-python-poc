@@ -1,5 +1,15 @@
 .PHONY: clean build
 
+default:
+	@echo 'Makefile for gRPC Python 3.x server'
+	@echo
+	@echo 'Usage:'
+	@echo
+	@echo '    make install    install the packages'
+	@echo '    make clean      cleanup IDL generated file'
+	@echo '    make build      generate code from IDL'
+	@echo
+
 install:
 	python -m pip install -r requirements.txt 
 

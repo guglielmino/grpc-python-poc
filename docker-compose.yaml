@@ -9,6 +9,10 @@ services:
     build:
       context: ./
       dockerfile: ./client-2.x/Dockerfile
+
+    depends_on:
+      - server
+
     environment:
       - GRPC_HOST=server
       - GRPC_PORT=50051
