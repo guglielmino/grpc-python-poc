@@ -1,5 +1,8 @@
-FROM python:3.6.8-stretch
+FROM python:3.6.8-slim-stretch
 
+RUN apt-get update && apt-get install -y \
+    build-essential
+    
 # Note: this requires to use a context set on the parent folder
 #        build the contaniner with "docker build -f Dockerfile  .." or from the 
 #        docker-compose.yaml 

@@ -17,4 +17,4 @@ services:
 
     environment:
       - GRPC_HOST=server
-      - GRPC_PORT=50051
+      - GRPC_PORT=5001
