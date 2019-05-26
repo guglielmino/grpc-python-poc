@@ -134,7 +134,7 @@ One important note about the environment: I wrote that one requirement for the P
 ## Creating the service
 
 At this point we have almost everything, we definded the IDL, developed the client but we miss the main dish: the service! 
-I left the service implementation after the client on purpose, having already defined the IDL and the client it should be clear what we need from it. The important point to focus on is that we need somewhere in the code the implementation of the service we want to make available throught gRPC, below our super-mega-cool `NotificationService`.
+I left the service implementation after the client on purpose, having already defined the IDL and the client it should be clear what we need from it. The important point to focus on is that we need, somewhere in the code, the implementation of the service we want to make available through gRPC, below our super-mega-cool `NotificationService`.
 
 ```python
 class NotificatorServiceServicer(notification_pb2_grpc.NotificatorServiceServicer):
@@ -143,7 +143,7 @@ class NotificatorServiceServicer(notification_pb2_grpc.NotificatorServiceService
         return common_pb2.Result(status=True)
 ```
 
-It is immediately clear that we are implementing here the interface defined in our IDL, base class `notification_pb2_grpc.NotificatorServiceServicer` payload and result are the ones desinged in the IDL.
+It is immediately clear that we are implementing here: the interface defined in our IDL. Base class `notification_pb2_grpc.NotificatorServiceServicer` payload and result are the ones desinged in the IDL.
 The implementation is trivial: we use `message` and `destination` coming from request, which is `NotificationPayload`, to log a message, responding with a `Result` wrapping a success status `status=True`.
 
 Defining the service is not enough to make it available to client, we need a way to expose the service over the network, four line of code are all what we need for that.
@@ -201,7 +201,7 @@ In short, I used the `protoc` (aka the protobuf IDL compiler) specific for Node.
 
 ### Containers
 
-If you followed all the article instructions at this point you are able to run everything locally, but since one of my requirements was to test the project inside a containers environment, the project contains Dockerfile(s) and docker-compose definition. Again, installation of Docker is out of scope (I feel like the skydivers lifesaver inventor joke (*) )
+If you followed all the article instructions at this point you are able to run everything locally, but since one of my requirements was to test the project inside a containers environment, the project contains Dockerfile(s) and docker-compose definition. Again, installation of Docker is out of scope (I feel like joke of the inventor of the skydivers hook (*) )
 
 ### Running locally with docker compose
 
@@ -219,10 +219,10 @@ client_1  | DEBUG:root:Client: notification sent
 
 ## Conclusion
 
-We scratched just the tip of the iceberg, gRPC is quite complex and I have overlooked a lot of details. If at this point is clear how gRPC can help in splitting architectures in components, I achived my main goal. To 
+We scratched just the tip of the iceberg, gRPC is quite complex and I have overlooked a lot of details. If at this point is clear how gRPC can help in splitting architectures in components, I achived my main goal. The obvious suggestion is to go deepen in the advanced topics, the [official site](https://grpc.io/) is the place where to start, and try to use it in some small projects.
 
 
-**(*) skydivers lifesaver inventor joke**
+**(*) joke of the inventor of the skydivers hook**
 
 An inventor went to the patent office saying: "I invented a hook to save life of skydivers and I want to patent it". 
 
