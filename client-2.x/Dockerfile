@@ -1,4 +1,4 @@
-FROM python:2.7.15-slim-jessie
+FROM python:2.7.15-slim-stretch
 
 RUN apt-get update && apt-get install -y \
     build-essential

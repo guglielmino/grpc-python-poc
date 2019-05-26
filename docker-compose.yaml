@@ -4,6 +4,8 @@ services:
     build:
       context: ./
       dockerfile: ./server-3.x/Dockerfile
+    ports:
+      - '5001:5001'
 
   client:
     build:

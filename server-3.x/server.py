@@ -3,6 +3,7 @@
 from concurrent import futures
 import time
 import math
+import json
 
 import os
 import grpc
@@ -13,13 +14,13 @@ import notification_pb2_grpc
 import common_pb2
 
 GRPC_HOST = os.getenv('GRPC_HOST', '[::]')
-GRPC_PORT = os.getenv('GRPC_PORT', '50051')
+GRPC_PORT = os.getenv('GRPC_PORT', '5001')
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 class NotificatorServiceServicer(notification_pb2_grpc.NotificatorServiceServicer):
     def SendNotification(self,  request, context):
-        print("Receiing a request for sendNotification (req = {0})  ".format(request))
+        print("Sending '{0}' to {1})  ".format(request.message, request.destination))
         return common_pb2.Result(status=True)
 
 def serve():
@@ -28,6 +29,7 @@ def serve():
        NotificatorServiceServicer(), server)
     server.add_insecure_port("{0}:{1}".format(GRPC_HOST, GRPC_PORT))
     server.start()
+    print("Listening on {0}:{1}".format(GRPC_HOST, GRPC_PORT))
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)
